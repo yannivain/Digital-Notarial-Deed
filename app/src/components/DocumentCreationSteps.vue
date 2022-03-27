@@ -3,22 +3,18 @@
       v-model="step"
       vertical
   >
+    <!-- Seller -->
     <v-stepper-step
         :complete="step > 1"
         step="1"
     >
       Seller
-      <!--      <small>Summarize if needed</small>-->
+      <!--<small>Summarize if needed</small>-->
     </v-stepper-step>
-
     <v-stepper-content step="1">
-      <v-card
-          class="mb-12"
-      >
-        <form>
-          <identity-form v-model="document.seller.identity"></identity-form>
-        </form>
-      </v-card>
+      <form>
+        <person-form v-model="document.seller"></person-form>
+      </form>
       <v-btn
           color="primary"
           @click="step = 2"
@@ -30,19 +26,18 @@
       </v-btn>
     </v-stepper-content>
 
+    <!-- Buyer -->
     <v-stepper-step
         :complete="step > 2"
         step="2"
     >
-      Sellers
+      Buyer
     </v-stepper-step>
 
     <v-stepper-content step="2">
-      <v-card
-          color="grey lighten-1"
-          class="mb-12"
-          height="200px"
-      ></v-card>
+      <form>
+        <person-form v-model="document.buyer"></person-form>
+      </form>
       <v-btn
           color="primary"
           @click="step = 3"
@@ -121,40 +116,24 @@
 </template>
 
 <script>
-import IdentityForm from "@/components/IdentityForm"
 import {cloneDeep} from "lodash"
+import {DEFAULT_PERSON} from "@/util/const"
+import PersonForm from "@/components/PersonForm"
 
-
-const DEFAULT_ADDRESS = {
-  streetName: "",
-  streetNr: "",
-  poBox: "",
-  zip: "",
-  city: "",
-  country: "",
-}
-const DEFAULT_IDENTITY = {
-  name: "",
-  firstname: "",
-  birthday: "",
-  sex: "",
-  placeResidency: cloneDeep(DEFAULT_ADDRESS)
-}
 
 export default {
   name: 'DocumentCreationSteps',
-  components: {IdentityForm},
+  components: {PersonForm},
   data: () => ({
     step: 1,
     document: {
-      seller: {
-        identity: cloneDeep(DEFAULT_IDENTITY)
-      }
+      seller: cloneDeep(DEFAULT_PERSON),
+      buyer: cloneDeep(DEFAULT_PERSON)
     }
   }),
-  watch:{
+  watch: {
     document: {
-      handler(newVal){
+      handler(newVal) {
         console.log(newVal)
       },
       deep: true

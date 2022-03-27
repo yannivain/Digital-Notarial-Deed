@@ -1,17 +1,128 @@
 <document>
+    <!--          -->
+    <!--  SELLER  -->
+    <!--          -->
     <seller>
+        <natural-person>
+            <name>TBD</name>
+            <firstname>TBD</firstname>
+            <birthday>TBD</birthday>
+            <sex>TBD</sex>
+            <place-residency>
+                <street-name>TBD</street-name>
+                <street-nr>TBD</street-nr>
+                <po-box>TBD</po-box>
+                <zip>TBD</zip>
+                <city>TBD</city>
+                <country>TBD</country>
+            </place-residency>
+            <place-origin>TBD</place-origin>
+        </natural-person>
+        <legal-person>
+            <name>TBD</name>
+            <seat>TBD</seat>
+            <UID>TBD</UID>
+            <representative>
+                <name>TBD</name>
+                <firstname>TBD</firstname>
+                <birthday>TBD</birthday>
+                <sex>TBD</sex>
+                <place-residency>
+                    <street-name>TBD</street-name>
+                    <street-nr>TBD</street-nr>
+                    <po-box>TBD</po-box>
+                    <zip>TBD</zip>
+                    <city>TBD</city>
+                    <country>TBD</country>
+                </place-residency>
+                <place-origin>TBD</place-origin>
+            </representative>
+        </legal-person>
+    </seller>
+    <!--         -->
+    <!--  BUYER  -->
+    <!--         -->
+    <buyer>
+        <natural-person>
+            <name>TBD</name>
+            <firstname>TBD</firstname>
+            <birthday>TBD</birthday>
+            <sex>TBD</sex>
+            <place-residency>
+                <street-name>TBD</street-name>
+                <street-nr>TBD</street-nr>
+                <po-box>TBD</po-box>
+                <zip>TBD</zip>
+                <city>TBD</city>
+                <country>TBD</country>
+            </place-residency>
+            <place-origin>TBD</place-origin>
+        </natural-person>
+        <legal-person>
+            <name>TBD</name>
+            <seat>TBD</seat>
+            <UID>TBD</UID>
+            <representative>
+                <name>TBD</name>
+                <firstname>TBD</firstname>
+                <birthday>TBD</birthday>
+                <sex>TBD</sex>
+                <place-residency>
+                    <street-name>TBD</street-name>
+                    <street-nr>TBD</street-nr>
+                    <po-box>TBD</po-box>
+                    <zip>TBD</zip>
+                    <city>TBD</city>
+                    <country>TBD</country>
+                </place-residency>
+                <place-origin>TBD</place-origin>
+            </representative>
+        </legal-person>
+    </buyer>
+    <!--       -->
+    <!--  LOT  -->
+    <!--       -->
+    <lot>
+        <egrid>TBD</egrid>
+        <register>
+            <name>TBD</name>
+            <lot-id>TBD</lot-id>
+        </register>
+    </lot>
+    <!--         -->
+    <!--  PRICE  -->
+    <!--         -->
+    <price>
+        <amount>TBD</amount>
+        <currency>TBD</currency>
+        <free-text>TBD</free-text>
+    </price>
+    <!--          -->
+    <!--  NOTARY  -->
+    <!--          -->
+    <notary>
         <name>TBD</name>
         <firstname>TBD</firstname>
-        <birthday>TBD</birthday>
-        <sex>TBD</sex>
-        <place-residency>
+        <office>
+            <name>TBD</name>
             <street-name>TBD</street-name>
-            <street-nr>4</street-nr>
+            <street-nr>TBD</street-nr>
             <po-box>TBD</po-box>
             <zip>TBD</zip>
             <city>TBD</city>
             <country>TBD</country>
-        </place-residency>
-        <place-origin>TBD</place-origin>
-    </seller>
+        </office>
+    </notary>
+    <!--                        -->
+    <!--  DATE OF THE CONTRACT  -->
+    <!--                        -->
+    <date-contract>TBD</date-contract>
+    <!--                                 -->
+    <!--  DATE OF THE OWNERSCHIP CHANGE  -->
+    <!--                                 -->
+    <date-change-ownership>TBD</date-change-ownership>
+    <!--                              -->
+    <!--  SPECIAL CONDITIONS OF SALE  -->
+    <!--                              -->
+    <special-conditions>TBD</special-conditions>
 </document>
