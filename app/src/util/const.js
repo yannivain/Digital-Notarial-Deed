@@ -60,4 +60,8 @@ export const DEFAULT_NOTARY = {
         ...cloneDeep(DEFAULT_ADDRESS)
     }
 }
+export const DEFAULT_SPECIAL_CONDITION = {
+    titleCondition: "",
+    textCondition: ""
+}
 

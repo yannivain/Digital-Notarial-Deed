@@ -126,7 +126,12 @@
     <!--                              -->
     <!--  SPECIAL CONDITIONS OF SALE  -->
     <!--                              -->
-    <special-conditions>TBD</special-conditions>
+    <special-conditions>
+        <special-condition>
+            <title-condition>TBD</title-condition>
+            <text-condition>TBD</text-condition>
+        </special-condition>
+    </special-conditions>
 </document>
 
 

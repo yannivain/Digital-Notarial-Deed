@@ -76,6 +76,7 @@
           <price-form v-model="document.prices[key]"></price-form>
         </div>
         <v-btn color="success" @click="addPrice" class="mb-2">Add a Price</v-btn>
+        <h4>TOTAL PRICE: {{ totalPrice }}</h4>
       </form>
       <v-btn
           color="primary"
@@ -108,7 +109,11 @@
       <form>
         <v-text-field label="Contract date" type="date" v-model="document.dateContract"></v-text-field>
         <v-text-field label="Change ownership date" type="date" v-model="document.dateChangeOwnership"></v-text-field>
-        <v-textarea label="SpecialConditions" v-model="document.specialConditions"></v-textarea>
+        <h5>Special Conditions</h5>
+        <div v-for="(_, key) of document.specialConditions" :key="key">
+          <special-condition-form v-model="document.specialConditions[key]"></special-condition-form>
+        </div>
+        <v-btn color="success" @click="addCondition" class="mb-2">Add a special condition</v-btn>
       </form>
       <v-btn
           color="primary"
@@ -122,16 +127,17 @@
 
 <script>
 import {cloneDeep} from "lodash"
-import {DEFAULT_LOT, DEFAULT_NOTARY, DEFAULT_PERSON, DEFAULT_PRICE} from "@/util/const"
+import {DEFAULT_LOT, DEFAULT_NOTARY, DEFAULT_PERSON, DEFAULT_PRICE, DEFAULT_SPECIAL_CONDITION} from "@/util/const"
 import PersonForm from "@/components/PersonForm"
 import LotForm from "@/components/LotForm"
 import PriceForm from "@/components/PriceForm"
 import NotaryForm from "@/components/NotaryForm"
+import SpecialConditionForm from "@/components/SpecialCondition"
 
 
 export default {
   name: 'DocumentCreationSteps',
-  components: {NotaryForm, PriceForm, LotForm, PersonForm},
+  components: {SpecialConditionForm, NotaryForm, PriceForm, LotForm, PersonForm},
   data: () => ({
     step: 1,
     document: {
@@ -142,9 +148,15 @@ export default {
       notary: cloneDeep(DEFAULT_NOTARY),
       dateContract: "",
       dateChangeOwnership: "",
-      specialConditions: ""
+      specialConditions: [cloneDeep(DEFAULT_SPECIAL_CONDITION)]
     }
   }),
+  computed: {
+    totalPrice() {
+      return this.document.prices.reduce((previousValue, currentPrice) => previousValue + parseInt(currentPrice.amount),
+          0)
+    }
+  },
   watch: {
     document: {
       handler(newVal) {
@@ -153,9 +165,12 @@ export default {
       deep: true
     }
   },
-  methods:{
-    addPrice(){
+  methods: {
+    addPrice() {
       this.document.prices.push(cloneDeep(DEFAULT_PRICE))
+    },
+    addCondition() {
+      this.document.specialConditions.push(cloneDeep(DEFAULT_SPECIAL_CONDITION))
     }
   }
 };
