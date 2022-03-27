@@ -1,10 +1,11 @@
 <template>
-  <div v-if="value">
-    <v-container>
+  <v-card class="ma-1" elevation="4">
+    <v-card-text>
       <v-text-field label="Price" type="number" v-model="price.amount"></v-text-field>
       <v-select label="Currency" v-model="price.currency" :items="currencyItems"></v-select>
-    </v-container>
-  </div>
+      <v-textarea label="Price description" v-model="price.freeText"></v-textarea>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>

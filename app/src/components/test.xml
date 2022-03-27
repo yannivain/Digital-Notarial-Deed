@@ -92,11 +92,13 @@
     <!--         -->
     <!--  PRICE  -->
     <!--         -->
-    <price>
-        <amount>TBD</amount>
-        <currency>TBD</currency>
-        <free-text>TBD</free-text>
-    </price>
+    <prices>
+        <price>
+            <amount>TBD</amount>
+            <currency>TBD</currency>
+            <free-text>TBD</free-text>
+        </price>
+    </prices>
     <!--          -->
     <!--  NOTARY  -->
     <!--          -->
@@ -126,3 +128,7 @@
     <!--                              -->
     <special-conditions>TBD</special-conditions>
 </document>
+
+
+
+

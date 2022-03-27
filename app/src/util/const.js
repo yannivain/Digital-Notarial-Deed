@@ -50,6 +50,14 @@ export const DEFAULT_LOT = {
 export const DEFAULT_PRICE = {
     amount: 0,
     currency: "",
+    freeText: ""
 }
-
+export const DEFAULT_NOTARY = {
+    name: "",
+    firstname: "",
+    office: {
+        name: "",
+        ...cloneDeep(DEFAULT_ADDRESS)
+    }
+}
 
