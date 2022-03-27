@@ -53,15 +53,13 @@
         :complete="step > 3"
         step="3"
     >
-      Buyers
+      Lot
     </v-stepper-step>
 
     <v-stepper-content step="3">
-      <v-card
-          color="grey lighten-1"
-          class="mb-12"
-          height="200px"
-      ></v-card>
+      <form>
+        <lot-form v-model="document.lot"></lot-form>
+      </form>
       <v-btn
           color="primary"
           @click="step = 4"
@@ -117,18 +115,20 @@
 
 <script>
 import {cloneDeep} from "lodash"
-import {DEFAULT_PERSON} from "@/util/const"
+import {DEFAULT_LOT, DEFAULT_PERSON} from "@/util/const"
 import PersonForm from "@/components/PersonForm"
+import LotForm from "@/components/LotForm"
 
 
 export default {
   name: 'DocumentCreationSteps',
-  components: {PersonForm},
+  components: {LotForm, PersonForm},
   data: () => ({
     step: 1,
     document: {
       seller: cloneDeep(DEFAULT_PERSON),
-      buyer: cloneDeep(DEFAULT_PERSON)
+      buyer: cloneDeep(DEFAULT_PERSON),
+      lot: cloneDeep(DEFAULT_LOT)
     }
   }),
   watch: {
