@@ -72,14 +72,10 @@
     </v-stepper-content>
 
     <v-stepper-step step="4">
-      Deed
+      Price
     </v-stepper-step>
     <v-stepper-content step="4">
-      <v-card
-          color="grey lighten-1"
-          class="mb-12"
-          height="200px"
-      ></v-card>
+      <price-form v-model="document.price"></price-form>
       <v-btn
           color="primary"
           @click="step = 5"
@@ -115,20 +111,22 @@
 
 <script>
 import {cloneDeep} from "lodash"
-import {DEFAULT_LOT, DEFAULT_PERSON} from "@/util/const"
+import {DEFAULT_LOT, DEFAULT_PERSON, DEFAULT_PRICE} from "@/util/const"
 import PersonForm from "@/components/PersonForm"
 import LotForm from "@/components/LotForm"
+import PriceForm from "@/components/PriceForm"
 
 
 export default {
   name: 'DocumentCreationSteps',
-  components: {LotForm, PersonForm},
+  components: {PriceForm, LotForm, PersonForm},
   data: () => ({
     step: 1,
     document: {
       seller: cloneDeep(DEFAULT_PERSON),
       buyer: cloneDeep(DEFAULT_PERSON),
-      lot: cloneDeep(DEFAULT_LOT)
+      lot: cloneDeep(DEFAULT_LOT),
+      price: cloneDeep(DEFAULT_PRICE)
     }
   }),
   watch: {

@@ -40,21 +40,16 @@ export const DEFAULT_LEGAL = {
     type_: PERSON_TYPES.LEGAL,
     ...cloneDeep(DEFAULT_LEGAL_PERSON)
 }
-/*
-<lot>
-    <egrid>TBD</egrid>
-    <register>
-        <name>TBD</name>
-        <lot-id>TBD</lot-id>
-    </register>
-</lot>
- */
 export const DEFAULT_LOT = {
     egrid: "",
     register: {
         name: "",
         lotID: ""
     }
+}
+export const DEFAULT_PRICE = {
+    amount: 0,
+    currency: "",
 }
 
 
