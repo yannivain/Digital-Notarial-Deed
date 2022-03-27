@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container>
     <document-creation-steps></document-creation-steps>
-  </div>
+  </v-container>
 </template>
 
 <script>

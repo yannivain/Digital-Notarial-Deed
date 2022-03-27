@@ -7,16 +7,18 @@
         :complete="step > 1"
         step="1"
     >
-      Notary
-<!--      <small>Summarize if needed</small>-->
+      Seller
+      <!--      <small>Summarize if needed</small>-->
     </v-stepper-step>
 
     <v-stepper-content step="1">
       <v-card
-          color="grey lighten-1"
           class="mb-12"
-          height="200px"
-      ></v-card>
+      >
+        <form>
+          <identity-form v-model="document.seller.identity"></identity-form>
+        </form>
+      </v-card>
       <v-btn
           color="primary"
           @click="step = 2"
@@ -96,10 +98,10 @@
       </v-btn>
     </v-stepper-content>
 
-    <v-stepper-step step="4">
+    <v-stepper-step step="5">
       Other
     </v-stepper-step>
-    <v-stepper-content step="4">
+    <v-stepper-content step="5">
       <v-card
           color="grey lighten-1"
           class="mb-12"
@@ -119,12 +121,45 @@
 </template>
 
 <script>
+import IdentityForm from "@/components/IdentityForm"
+import {cloneDeep} from "lodash"
+
+
+const DEFAULT_ADDRESS = {
+  streetName: "",
+  streetNr: "",
+  poBox: "",
+  zip: "",
+  city: "",
+  country: "",
+}
+const DEFAULT_IDENTITY = {
+  name: "",
+  firstname: "",
+  birthday: "",
+  sex: "",
+  placeResidency: cloneDeep(DEFAULT_ADDRESS)
+}
+
 export default {
   name: 'DocumentCreationSteps',
-  components: {},
+  components: {IdentityForm},
   data: () => ({
-    step: 1
-  })
+    step: 1,
+    document: {
+      seller: {
+        identity: cloneDeep(DEFAULT_IDENTITY)
+      }
+    }
+  }),
+  watch:{
+    document: {
+      handler(newVal){
+        console.log(newVal)
+      },
+      deep: true
+    }
+  }
 };
 </script>
 

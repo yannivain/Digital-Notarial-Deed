@@ -1,0 +1,17 @@
+<document>
+    <seller>
+        <name>TBD</name>
+        <firstname>TBD</firstname>
+        <birthday>TBD</birthday>
+        <sex>TBD</sex>
+        <place-residency>
+            <street-name>TBD</street-name>
+            <street-nr>4</street-nr>
+            <po-box>TBD</po-box>
+            <zip>TBD</zip>
+            <city>TBD</city>
+            <country>TBD</country>
+        </place-residency>
+        <place-origin>TBD</place-origin>
+    </seller>
+</document>

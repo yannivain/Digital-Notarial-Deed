@@ -5,7 +5,7 @@
         dark
     >
       <div class="d-flex align-center">
-        <h1>Financial Deed Generator</h1>
+        <h1>Deed Generator</h1>
       </div>
 
       <v-spacer></v-spacer>
