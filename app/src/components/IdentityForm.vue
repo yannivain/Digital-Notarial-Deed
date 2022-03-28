@@ -5,7 +5,7 @@
       <v-text-field label="Name" v-model="identity.name"></v-text-field>
       <v-text-field label="Firstname" v-model="identity.firstname"></v-text-field>
       <v-text-field label="Birthday" type="date" v-model="identity.birthday"></v-text-field>
-      <v-select label="sex" :items="sexItems" v-model="identity.sex"></v-select>
+      <v-select label="Sex" :items="sexItems" v-model="identity.sex"></v-select>
       <v-text-field label="Place of origin" v-model="identity.placeOrigin"></v-text-field>
     </v-container>
     <h5>Address</h5>
