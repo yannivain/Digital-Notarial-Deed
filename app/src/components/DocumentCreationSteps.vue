@@ -164,7 +164,7 @@ import NotaryForm from "@/components/NotaryForm"
 import SpecialConditionForm from "@/components/SpecialCondition"
 import DocumentDocument from "@/data-classes/DocumentDocument";
 import {downloadXml} from "@/xml/utils";
-import document from "@/components/demo.json";
+import demoDocument from "@/components/demo.json";
 import {SignedXml} from "xadesjs";
 
 export default {
@@ -172,7 +172,7 @@ export default {
   components: {SpecialConditionForm, NotaryForm, PriceForm, LotForm, PersonForm},
   data: () => ({
     step: 1,
-    document: cloneDeep(document),
+    document: cloneDeep(demoDocument),
     // document: {
     //   seller: cloneDeep(DEFAULT_NATURAL),
     //   buyer: cloneDeep(DEFAULT_NATURAL),
