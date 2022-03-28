@@ -21,16 +21,16 @@ export default class NotaryOfficeTag {
 
     constructor({name, streetName, streetNr, poBox, zip, city, country}) {
         this.name = new StringTag(name)
-        this.streetName = StringTag(streetName)
-        this.streetNr = StringTag(streetNr)
-        this.poBox = StringTag(poBox)
-        this.zip = StringTag(zip)
-        this.city = StringTag(city)
-        this.country = StringTag(country)
+        this.streetName = new StringTag(streetName)
+        this.streetNr = new StringTag(streetNr)
+        this.poBox = new StringTag(poBox)
+        this.zip = new StringTag(zip)
+        this.city = new StringTag(city)
+        this.country = new StringTag(country)
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         tag.appendChild(this.name.toXml(TAG_NAMES.NAME))
         tag.appendChild(this.streetName.toXml(TAG_NAMES.STREET_NAME))

@@ -6,7 +6,7 @@ export default class DateTag {
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         // TODO: Format date ?
         tag.textContent = this.value

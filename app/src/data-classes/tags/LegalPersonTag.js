@@ -22,7 +22,7 @@ export default class LegalPersonTag {
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         tag.appendChild(this.name.toXml(TAG_NAMES.NAME))
         tag.appendChild(this.seat.toXml(TAG_NAMES.SEAT))

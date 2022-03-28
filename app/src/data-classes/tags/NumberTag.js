@@ -6,7 +6,7 @@ export default class NumberTag {
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         // TODO: Format the value ?
         tag.textContent = this.value

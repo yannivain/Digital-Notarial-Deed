@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-select label="Person" :items="personItems" v-model="person.type_" item-value="value" item-text="text"></v-select>
-    <identity-form v-if="person.firstname !== undefined" v-model="person" title="Identity"></identity-form>
-    <legal-person-form v-if="person.representative !==  undefined" v-model="person"></legal-person-form>
+    <identity-form v-if="person.type_ === PERSON_TYPES.NATURAL" v-model="person" title="Identity"></identity-form>
+    <legal-person-form v-if="person.type_ ===  PERSON_TYPES.LEGAL" v-model="person"></legal-person-form>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
         text: "Legal Person"
       },
     ],
+    PERSON_TYPES
   }),
   watch: {
     "person.type_"(newVal) {

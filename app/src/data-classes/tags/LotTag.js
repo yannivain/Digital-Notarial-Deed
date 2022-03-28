@@ -1,4 +1,5 @@
 import StringTag from "@/data-classes/tags/StringTag";
+import LotRegisterTag from "@/data-classes/tags/LotRegisterTag";
 
 const TAG_NAMES = {
     EGRID: 'egrid',
@@ -11,11 +12,11 @@ export default class LotTag {
 
     constructor({egrid, register}) {
         this.egrid = new StringTag(egrid)
-        this.register = new StringTag(register)
+        this.register = new LotRegisterTag(register)
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         tag.appendChild(this.egrid.toXml(TAG_NAMES.EGRID))
         tag.appendChild(this.register.toXml(TAG_NAMES.REGISTER))

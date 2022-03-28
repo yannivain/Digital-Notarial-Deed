@@ -28,7 +28,7 @@ export default class AddressTag {
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         tag.appendChild(this.streetName.toXml(TAG_NAMES.STREET_NAME))
         tag.appendChild(this.streetNr.toXml(TAG_NAMES.STREET_NR))

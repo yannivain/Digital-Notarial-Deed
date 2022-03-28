@@ -1,5 +1,6 @@
-export const downloadXml = (document, filename) => {
-    const blob = new Blob([document], {type: 'application/xml'})
+export const downloadXml = (xmlDoc, filename) => {
+    const xmlString = new XMLSerializer().serializeToString(xmlDoc)
+    const blob = new Blob([xmlString], {type: 'application/xml'})
     const url = URL.createObjectURL(blob)
     const element = document.createElement('a')
 

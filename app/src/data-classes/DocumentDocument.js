@@ -38,17 +38,17 @@ export default class DocumentDocument {
     }
 
     toXml(tagName) {
-        const doc = document.implementation.createDocument(null, tagName)
+        const tag = document.createElementNS(null, tagName)
 
-        doc.appendChild(this.seller.toXml(TAG_NAMES.SELLER))
-        doc.appendChild(this.buyer.toXml(TAG_NAMES.BUYER))
-        doc.appendChild(this.lot.toXml(TAG_NAMES.LOT))
-        doc.appendChild(this.prices.toXml(TAG_NAMES.PRICES))
-        doc.appendChild(this.notary.toXml(TAG_NAMES.NOTARY))
-        doc.appendChild(this.dateContract.toXml(TAG_NAMES.DATE_CONTRACT))
-        doc.appendChild(this.dateChangeOwnership.toXml(TAG_NAMES.DATE_CHANGE_OWNERSHIP))
-        doc.appendChild(this.specialConditions.toXml(TAG_NAMES.SPECIAL_CONDITIONS))
+        tag.appendChild(this.seller.toXml(TAG_NAMES.SELLER))
+        tag.appendChild(this.buyer.toXml(TAG_NAMES.BUYER))
+        tag.appendChild(this.lot.toXml(TAG_NAMES.LOT))
+        tag.appendChild(this.prices.toXml(TAG_NAMES.PRICES))
+        tag.appendChild(this.notary.toXml(TAG_NAMES.NOTARY))
+        tag.appendChild(this.dateContract.toXml(TAG_NAMES.DATE_CONTRACT))
+        tag.appendChild(this.dateChangeOwnership.toXml(TAG_NAMES.DATE_CHANGE_OWNERSHIP))
+        tag.appendChild(this.specialConditions.toXml(TAG_NAMES.SPECIAL_CONDITIONS))
 
-        return doc
+        return tag
     }
 }

@@ -6,8 +6,8 @@
     </v-container>
     <h5>Register</h5>
     <v-container>
-      <v-text-field label="name" v-model="lot.name"></v-text-field>
-      <v-text-field label="Lot ID" v-model="lot.id"></v-text-field>
+      <v-text-field label="name" v-model="lot.register.name"></v-text-field>
+      <v-text-field label="Lot ID" v-model="lot.register.id"></v-text-field>
     </v-container>
   </div>
 </template>

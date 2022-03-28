@@ -117,9 +117,9 @@
       </form>
       <v-btn
           color="primary"
-          @click="step = 6"
+          @click="downloadXml"
       >
-        Continue
+        Download XML
       </v-btn>
     </v-stepper-content>
   </v-stepper>
@@ -127,12 +127,14 @@
 
 <script>
 import {cloneDeep} from "lodash"
-import {DEFAULT_LOT, DEFAULT_NOTARY, DEFAULT_PERSON, DEFAULT_PRICE, DEFAULT_SPECIAL_CONDITION} from "@/util/const"
+import {DEFAULT_LOT, DEFAULT_NATURAL, DEFAULT_NOTARY, DEFAULT_PRICE, DEFAULT_SPECIAL_CONDITION} from "@/util/const"
 import PersonForm from "@/components/PersonForm"
 import LotForm from "@/components/LotForm"
 import PriceForm from "@/components/PriceForm"
 import NotaryForm from "@/components/NotaryForm"
 import SpecialConditionForm from "@/components/SpecialCondition"
+import DocumentDocument from "@/data-classes/DocumentDocument";
+import {downloadXml} from "@/xml/utils";
 
 
 export default {
@@ -141,8 +143,8 @@ export default {
   data: () => ({
     step: 1,
     document: {
-      seller: cloneDeep(DEFAULT_PERSON),
-      buyer: cloneDeep(DEFAULT_PERSON),
+      seller: cloneDeep(DEFAULT_NATURAL),
+      buyer: cloneDeep(DEFAULT_NATURAL),
       lot: cloneDeep(DEFAULT_LOT),
       prices: [cloneDeep(DEFAULT_PRICE)],
       notary: cloneDeep(DEFAULT_NOTARY),
@@ -158,12 +160,12 @@ export default {
     }
   },
   watch: {
-    document: {
-      handler(newVal) {
-        console.log(newVal)
-      },
-      deep: true
-    }
+    // document: {
+    //   handler(newVal) {
+    //     console.log(newVal)
+    //   },
+    //   deep: true
+    // }
   },
   methods: {
     addPrice() {
@@ -171,6 +173,26 @@ export default {
     },
     addCondition() {
       this.document.specialConditions.push(cloneDeep(DEFAULT_SPECIAL_CONDITION))
+    },
+    downloadXml() {
+      const {seller, buyer, lot, prices, notary, dateContract, dateChangeOwnership, specialConditions} = this.document
+
+      const doc = new DocumentDocument({
+        seller,
+        buyer,
+        lot,
+        prices,
+        notary,
+        dateContract,
+        dateChangeOwnership,
+        specialConditions
+      })
+
+      const xmlRoot = doc.toXml('document')
+      const xmlDoc = document.implementation.createDocument(null, null)
+      xmlDoc.appendChild(xmlRoot)
+
+      downloadXml(xmlDoc, 'real_estate_contract.xml')
     }
   }
 };

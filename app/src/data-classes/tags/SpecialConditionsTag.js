@@ -12,7 +12,7 @@ export default class SpecialConditionsTag {
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         for (const specialCondition of this.specialConditions)
             tag.appendChild(specialCondition.toXml(TAG_NAMES.SPECIAL_CONDITION))

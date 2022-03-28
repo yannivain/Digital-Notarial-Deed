@@ -12,7 +12,7 @@ export default class PricesTag {
     }
 
     toXml(tagName) {
-        const tag = document.createElement(tagName)
+        const tag = document.createElementNS(null, tagName)
 
         for (const price of this.prices)
             tag.appendChild(price.toXml(TAG_NAMES.PRICE))
