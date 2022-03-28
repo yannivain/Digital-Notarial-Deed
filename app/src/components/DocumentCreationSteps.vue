@@ -164,19 +164,14 @@ import NotaryForm from "@/components/NotaryForm"
 import SpecialConditionForm from "@/components/SpecialCondition"
 import DocumentDocument from "@/data-classes/DocumentDocument";
 import {downloadXml} from "@/xml/utils";
-<<<<<<< HEAD
 import document from "@/components/demo.json";
-
-=======
 import {SignedXml} from "xadesjs";
->>>>>>> 685796948091d16d771e4d9f97c5d7c2aa7f30c8
 
 export default {
   name: 'DocumentCreationSteps',
   components: {SpecialConditionForm, NotaryForm, PriceForm, LotForm, PersonForm},
   data: () => ({
     step: 1,
-<<<<<<< HEAD
     document: cloneDeep(document),
     // document: {
     //   seller: cloneDeep(DEFAULT_NATURAL),
@@ -189,19 +184,7 @@ export default {
     //   specialConditions: [cloneDeep(DEFAULT_SPECIAL_CONDITION)]
     // }
     DEFAULT_LOT, DEFAULT_NATURAL, DEFAULT_NOTARY,
-=======
-    document: {
-      seller: cloneDeep(DEFAULT_NATURAL),
-      buyer: cloneDeep(DEFAULT_NATURAL),
-      lot: cloneDeep(DEFAULT_LOT),
-      prices: [cloneDeep(DEFAULT_PRICE)],
-      notary: cloneDeep(DEFAULT_NOTARY),
-      dateContract: "",
-      dateChangeOwnership: "",
-      specialConditions: [cloneDeep(DEFAULT_SPECIAL_CONDITION)]
-    },
     privateKey: null
->>>>>>> 685796948091d16d771e4d9f97c5d7c2aa7f30c8
   }),
   computed: {
     totalPrice() {
