@@ -15,7 +15,7 @@
           <v-text-field label="Birthday" type="date" v-model="identity.birthday" hide-details outlined></v-text-field>
         </div>
         <div class="col-md-6">
-          <v-select label="sex" :items="sexItems" v-model="identity.sex" hide-details outlined></v-select>
+          <v-select label="Sex" :items="sexItems" v-model="identity.sex" hide-details outlined></v-select>
         </div>
       </div>
       <div class="row">

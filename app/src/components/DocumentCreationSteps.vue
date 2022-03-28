@@ -135,9 +135,20 @@
       </form>
       <v-btn
           color="primary"
-          @click="downloadXml"
+          @click="step = 7"
       >
-        Download XML
+        Continue
+      </v-btn>
+    </v-stepper-content>
+
+    <!-- Confirm & sign -->
+    <v-stepper-step step="7" :complete="step > 7" editable>
+      Sign & download
+    </v-stepper-step>
+    <v-stepper-content step="7">
+      <v-file-input label="Private key" v-model="privateKey"></v-file-input>
+      <v-btn color="primary" @click="signAndDownload" :disabled="!privateKey">
+        Sign & download contract
       </v-btn>
     </v-stepper-content>
   </v-stepper>
@@ -153,14 +164,19 @@ import NotaryForm from "@/components/NotaryForm"
 import SpecialConditionForm from "@/components/SpecialCondition"
 import DocumentDocument from "@/data-classes/DocumentDocument";
 import {downloadXml} from "@/xml/utils";
+<<<<<<< HEAD
 import document from "@/components/demo.json";
 
+=======
+import {SignedXml} from "xadesjs";
+>>>>>>> 685796948091d16d771e4d9f97c5d7c2aa7f30c8
 
 export default {
   name: 'DocumentCreationSteps',
   components: {SpecialConditionForm, NotaryForm, PriceForm, LotForm, PersonForm},
   data: () => ({
     step: 1,
+<<<<<<< HEAD
     document: cloneDeep(document),
     // document: {
     //   seller: cloneDeep(DEFAULT_NATURAL),
@@ -173,20 +189,25 @@ export default {
     //   specialConditions: [cloneDeep(DEFAULT_SPECIAL_CONDITION)]
     // }
     DEFAULT_LOT, DEFAULT_NATURAL, DEFAULT_NOTARY,
+=======
+    document: {
+      seller: cloneDeep(DEFAULT_NATURAL),
+      buyer: cloneDeep(DEFAULT_NATURAL),
+      lot: cloneDeep(DEFAULT_LOT),
+      prices: [cloneDeep(DEFAULT_PRICE)],
+      notary: cloneDeep(DEFAULT_NOTARY),
+      dateContract: "",
+      dateChangeOwnership: "",
+      specialConditions: [cloneDeep(DEFAULT_SPECIAL_CONDITION)]
+    },
+    privateKey: null
+>>>>>>> 685796948091d16d771e4d9f97c5d7c2aa7f30c8
   }),
   computed: {
     totalPrice() {
       return this.document.prices.reduce((previousValue, currentPrice) => previousValue + parseInt(currentPrice.amount),
           0)
     }
-  },
-  watch: {
-    // document: {
-    //   handler(newVal) {
-    //     console.log(newVal)
-    //   },
-    //   deep: true
-    // }
   },
   methods: {
     addPrice() {
@@ -195,7 +216,7 @@ export default {
     addCondition() {
       this.document.specialConditions.push(cloneDeep(DEFAULT_SPECIAL_CONDITION))
     },
-    downloadXml() {
+    signAndDownload() {
       const {seller, buyer, lot, prices, notary, dateContract, dateChangeOwnership, specialConditions} = this.document
 
       const doc = new DocumentDocument({
@@ -213,7 +234,43 @@ export default {
       const xmlDoc = document.implementation.createDocument(null, null)
       xmlDoc.appendChild(xmlRoot)
 
-      downloadXml(xmlDoc, 'real_estate_contract.xml')
+      this.importPrivateKey(this.privateKey)
+          .then(cryptoKey => {
+            console.log(cryptoKey)
+
+            const signedXml = new SignedXml()
+            return signedXml.Sign({name: "ECDSA"}, cryptoKey, xmlDoc)
+          })
+          .then(signedDocument => {
+            console.log(signedDocument)
+
+            downloadXml(signedDocument, 'real_estate_contract.xml')
+          })
+          .catch(err => {
+            console.error(err)
+          })
+    },
+    importPrivateKey(file) {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader()
+        fileReader.onload = resolve
+        fileReader.onerror = reject
+        fileReader.readAsText(file)
+      })
+          .then(loadEvent => {
+            const keyText = loadEvent.target.result
+
+            const header = '-----BEGIN PRIVATE KEY-----'
+            const footer = '-----END PRIVATE KEY-----'
+
+            const cleanedKeyText = keyText.substring(header.length + 1, keyText.length - footer.length - 1)
+            const cleanedKeyArrayBuffer = new TextEncoder().encode(cleanedKeyText)
+
+            return crypto.subtle.importKey('pkcs8', cleanedKeyArrayBuffer, {
+              name: 'RSA-PSS',
+              hash: 'SHA-256'
+            }, false, ['sign'])
+          })
     }
   }
 };
