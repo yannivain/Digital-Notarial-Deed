@@ -164,7 +164,7 @@ import NotaryForm from "@/components/NotaryForm"
 import SpecialConditionForm from "@/components/SpecialCondition"
 import DocumentDocument from "@/data-classes/DocumentDocument";
 import {downloadXml} from "@/xml/utils";
-import document from "@/components/demo.json";
+import demoDocument from "@/components/demo.json";
 import {SignedXml} from "xadesjs";
 
 export default {
@@ -172,7 +172,7 @@ export default {
   components: {SpecialConditionForm, NotaryForm, PriceForm, LotForm, PersonForm},
   data: () => ({
     step: 1,
-    document: cloneDeep(document),
+    document: cloneDeep(demoDocument),
     // document: {
     //   seller: cloneDeep(DEFAULT_NATURAL),
     //   buyer: cloneDeep(DEFAULT_NATURAL),
@@ -218,16 +218,13 @@ export default {
       xmlDoc.appendChild(xmlRoot)
 
       this.importPrivateKey(this.privateKey)
-          .then(cryptoKey => {
-            console.log(cryptoKey)
-
-            const signedXml = new SignedXml()
-            return signedXml.Sign({name: "ECDSA"}, cryptoKey, xmlDoc)
-          })
-          .then(signedDocument => {
-            console.log(signedDocument)
-
-            downloadXml(signedDocument, 'real_estate_contract.xml')
+          .then(cryptoKey => new SignedXml().Sign({name: 'RSA-PSS'}, cryptoKey, xmlDoc))
+          .then(signature => {
+            const signatureElement = new DOMParser()
+                .parseFromString(signature.toString(), 'text/xml')
+                .documentElement
+            xmlRoot.appendChild(signatureElement)
+            downloadXml(xmlDoc, 'real_estate_contract.xml')
           })
           .catch(err => {
             console.error(err)
@@ -238,18 +235,10 @@ export default {
         const fileReader = new FileReader()
         fileReader.onload = resolve
         fileReader.onerror = reject
-        fileReader.readAsText(file)
+        fileReader.readAsArrayBuffer(file)
       })
           .then(loadEvent => {
-            const keyText = loadEvent.target.result
-
-            const header = '-----BEGIN PRIVATE KEY-----'
-            const footer = '-----END PRIVATE KEY-----'
-
-            const cleanedKeyText = keyText.substring(header.length + 1, keyText.length - footer.length - 1)
-            const cleanedKeyArrayBuffer = new TextEncoder().encode(cleanedKeyText)
-
-            return crypto.subtle.importKey('pkcs8', cleanedKeyArrayBuffer, {
+            return crypto.subtle.importKey('pkcs8', loadEvent.target.result, {
               name: 'RSA-PSS',
               hash: 'SHA-256'
             }, false, ['sign'])
