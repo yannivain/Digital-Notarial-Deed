@@ -1,11 +1,29 @@
 <template>
   <div>
-      <v-text-field label="Street Name" v-model="address.streetName"></v-text-field>
-      <v-text-field label="Street Nr" v-model="address.streetNr"></v-text-field>
-      <v-text-field label="PO Box" type="number" v-model="address.poBox"></v-text-field> <!-- Optional -->
-      <v-text-field label="ZIP" type="number" v-model="address.zip"></v-text-field>
-      <v-text-field label="City" v-model="address.city"></v-text-field>
-      <v-text-field label="Country" v-model="address.country"></v-text-field>
+    <div class="row">
+      <div class="col-md-10">
+        <v-text-field label="Street Name" v-model="address.streetName" hide-details outlined></v-text-field>
+      </div>
+      <div class="col-md-2">
+        <v-text-field label="Street Nr" v-model="address.streetNr" hide-details outlined></v-text-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <v-text-field label="PO Box" type="number" v-model="address.poBox" hide-details outlined></v-text-field> <!-- Optional -->
+      </div>
+      <div class="col-md-4">
+        <v-text-field label="ZIP" type="number" v-model="address.zip" hide-details outlined></v-text-field>
+      </div>
+      <div class="col-md-4">
+        <v-text-field label="City" v-model="address.city" hide-details outlined></v-text-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <v-text-field label="Country" v-model="address.country" hide-details outlined></v-text-field>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,6 +1,12 @@
 <template>
   <div>
-    <v-select label="Person" :items="personItems" v-model="person.type_" item-value="value" item-text="text"></v-select>
+    <v-select label="Person"
+              :items="personItems"
+              v-model="person.type_"
+              item-value="value"
+              item-text="text"
+              outlined
+    class="mt-1"></v-select>
     <identity-form v-if="person.type_ === PERSON_TYPES.NATURAL" v-model="person" title="Identity"></identity-form>
     <legal-person-form v-if="person.type_ ===  PERSON_TYPES.LEGAL" v-model="person"></legal-person-form>
   </div>

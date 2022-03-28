@@ -72,8 +72,10 @@
     <v-stepper-content step="4">
       <form>
         <h5>Prices</h5>
-        <div v-for="(_, key) of document.prices" :key="key">
-          <price-form v-model="document.prices[key]"></price-form>
+        <div class="row">
+          <div v-for="(_, key) of document.prices" :key="key" class="col-md-6">
+            <price-form v-model="document.prices[key]" :id="key"></price-form>
+          </div>
         </div>
         <v-btn color="success" @click="addPrice" class="mb-2">Add a Price</v-btn>
         <h4>TOTAL PRICE: {{ totalPrice }}</h4>
@@ -107,11 +109,27 @@
     </v-stepper-step>
     <v-stepper-content step="6">
       <form>
-        <v-text-field label="Contract date" type="date" v-model="document.dateContract"></v-text-field>
-        <v-text-field label="Change ownership date" type="date" v-model="document.dateChangeOwnership"></v-text-field>
+        <div class="row my-1">
+          <div class="col-md-6">
+            <v-text-field label="Contract date"
+                          type="date"
+                          v-model="document.dateContract"
+                          hide-details
+                          outlined></v-text-field>
+          </div>
+          <div class="col-md-6">
+            <v-text-field label="Change ownership date"
+                          type="date"
+                          v-model="document.dateChangeOwnership"
+                          hide-details
+                          outlined></v-text-field>
+          </div>
+        </div>
         <h5>Special Conditions</h5>
-        <div v-for="(_, key) of document.specialConditions" :key="key">
-          <special-condition-form v-model="document.specialConditions[key]"></special-condition-form>
+        <div class="row">
+          <div v-for="(_, key) of document.specialConditions" :key="key" class="col-md-6">
+            <special-condition-form v-model="document.specialConditions[key]" :id="key"></special-condition-form>
+          </div>
         </div>
         <v-btn color="success" @click="addCondition" class="mb-2">Add a special condition</v-btn>
       </form>
@@ -146,6 +164,7 @@ import NotaryForm from "@/components/NotaryForm"
 import SpecialConditionForm from "@/components/SpecialCondition"
 import DocumentDocument from "@/data-classes/DocumentDocument";
 import {downloadXml} from "@/xml/utils";
+import document from "@/components/demo.json";
 import {SignedXml} from "xadesjs";
 
 export default {
@@ -153,16 +172,18 @@ export default {
   components: {SpecialConditionForm, NotaryForm, PriceForm, LotForm, PersonForm},
   data: () => ({
     step: 1,
-    document: {
-      seller: cloneDeep(DEFAULT_NATURAL),
-      buyer: cloneDeep(DEFAULT_NATURAL),
-      lot: cloneDeep(DEFAULT_LOT),
-      prices: [cloneDeep(DEFAULT_PRICE)],
-      notary: cloneDeep(DEFAULT_NOTARY),
-      dateContract: "",
-      dateChangeOwnership: "",
-      specialConditions: [cloneDeep(DEFAULT_SPECIAL_CONDITION)]
-    },
+    document: cloneDeep(document),
+    // document: {
+    //   seller: cloneDeep(DEFAULT_NATURAL),
+    //   buyer: cloneDeep(DEFAULT_NATURAL),
+    //   lot: cloneDeep(DEFAULT_LOT),
+    //   prices: [cloneDeep(DEFAULT_PRICE)],
+    //   notary: cloneDeep(DEFAULT_NOTARY),
+    //   dateContract: "",
+    //   dateChangeOwnership: "",
+    //   specialConditions: [cloneDeep(DEFAULT_SPECIAL_CONDITION)]
+    // }
+    DEFAULT_LOT, DEFAULT_NATURAL, DEFAULT_NOTARY,
     privateKey: null
   }),
   computed: {
