@@ -2,9 +2,19 @@
   <div>
     <h5>Company Details</h5>
     <v-container>
-      <v-text-field label="Name" v-model="seller.name"></v-text-field>
-      <v-text-field label="Seat" v-model="seller.seat"></v-text-field>
-      <v-text-field label="UID" v-model="seller.uid"></v-text-field>
+      <div class="row">
+        <div class="col-md-6">
+          <v-text-field label="Name" v-model="seller.name" hide-details outlined></v-text-field>
+        </div>
+        <div class="col-md-6">
+          <v-text-field label="Seat" v-model="seller.seat" hide-details outlined></v-text-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <v-text-field label="UID" v-model="seller.uid" hide-details outlined></v-text-field>
+        </div>
+      </div>
     </v-container>
     <identity-form v-model="seller.representative" title="Company Representative"></identity-form>
   </div>

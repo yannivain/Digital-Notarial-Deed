@@ -2,11 +2,27 @@
   <div v-if="value">
     <h5 v-if="title">{{ title }}</h5>
     <v-container>
-      <v-text-field label="Name" v-model="identity.name"></v-text-field>
-      <v-text-field label="Firstname" v-model="identity.firstname"></v-text-field>
-      <v-text-field label="Birthday" type="date" v-model="identity.birthday"></v-text-field>
-      <v-select label="sex" :items="sexItems" v-model="identity.sex"></v-select>
-      <v-text-field label="Place of origin" v-model="identity.placeOrigin"></v-text-field>
+      <div class="row">
+        <div class="col-md-6">
+          <v-text-field label="Name" v-model="identity.name" hide-details outlined></v-text-field>
+        </div>
+        <div class="col-md-6">
+          <v-text-field label="Firstname" v-model="identity.firstname" hide-details outlined></v-text-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <v-text-field label="Birthday" type="date" v-model="identity.birthday" hide-details outlined></v-text-field>
+        </div>
+        <div class="col-md-6">
+          <v-select label="sex" :items="sexItems" v-model="identity.sex" hide-details outlined></v-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <v-text-field label="Place of origin" v-model="identity.placeOrigin" hide-details outlined></v-text-field>
+        </div>
+      </div>
     </v-container>
     <h5>Address</h5>
     <v-container>

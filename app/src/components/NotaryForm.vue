@@ -2,12 +2,22 @@
   <div v-if="value">
     <h5>Notary</h5>
     <v-container>
-      <v-text-field label="Name" v-model="notary.name"></v-text-field>
-      <v-text-field label="First Name" v-model="notary.firstname"></v-text-field>
+      <div class="row">
+        <div class="col-md-6">
+          <v-text-field label="Name" v-model="notary.name" outlined hide-details></v-text-field>
+        </div>
+        <div class="col-md-6">
+          <v-text-field label="First Name" v-model="notary.firstname" outlined hide-details></v-text-field>
+        </div>
+      </div>
     </v-container>
     <h5>Office</h5>
     <v-container>
-      <v-text-field label="Office Name" v-model="notary.office.name"></v-text-field>
+      <div class="row">
+        <div class="col-md-12">
+          <v-text-field label="Office Name" v-model="notary.office.name" outlined hide-details></v-text-field>
+        </div>
+      </div>
       <address-fields v-model="notary.office"></address-fields>
     </v-container>
   </div>

@@ -1,8 +1,17 @@
 <template>
   <v-card class="ma-1" elevation="4">
+    <v-card-title>Special condition #{{ id + 1 }}</v-card-title>
     <v-card-text>
-      <v-text-field label="Title" v-model="condition.titleCondition"></v-text-field>
-      <v-text-field label="Condition" v-model="condition.textCondition"></v-text-field>
+      <div class="row">
+        <div class="col">
+          <v-text-field label="Title" v-model="condition.titleCondition" hide-details outlined></v-text-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <v-textarea label="Condition" v-model="condition.textCondition" hide-details outlined></v-textarea>
+        </div>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -14,6 +23,7 @@ export default {
   components: {},
   props: {
     value: {type: Object, required: true},
+    id: {type: Number, required: true}
   },
   data: () => ({}),
   computed: {

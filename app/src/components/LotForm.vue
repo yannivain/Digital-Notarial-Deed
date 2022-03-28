@@ -2,12 +2,19 @@
   <div v-if="value">
     <h5>Lot</h5>
     <v-container>
-      <v-text-field label="egrid" v-model="lot.egrid"></v-text-field>
-    </v-container>
-    <h5>Register</h5>
-    <v-container>
-      <v-text-field label="name" v-model="lot.register.name"></v-text-field>
-      <v-text-field label="Lot ID" v-model="lot.register.id"></v-text-field>
+      <div class="row">
+        <div class="col-md-12">
+          <v-text-field label="EGRID" v-model="lot.egrid" outlined hide-details></v-text-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+      <v-text-field label="Name in Registry" v-model="lot.register.name" outlined hide-details></v-text-field>
+        </div>
+        <div class="col-md-6">
+      <v-text-field label="Lot ID in Registry" v-model="lot.register.id" outlined hide-details></v-text-field>
+        </div>
+      </div>
     </v-container>
   </div>
 </template>
