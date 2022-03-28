@@ -1,8 +1,8 @@
 import StringTag from "@/data-classes/tags/StringTag";
 
 const TAG_NAMES = {
-    TITLE_CONDITION: 'titleCondition',
-    TEXT_CONDITION: 'textCondition'
+    TITLE_CONDITION: 'title-condition',
+    TEXT_CONDITION: 'text-condition'
 }
 
 export default class SpecialConditionTag {

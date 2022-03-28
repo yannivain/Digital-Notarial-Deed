@@ -4,11 +4,12 @@ import AddressTag from "@/data-classes/tags/AddressTag";
 
 const TAG_NAMES = {
     NAME: 'name',
-    FIRST_NAME: 'first-name',
+    FIRST_NAME: 'firstname',
     BIRTHDAY: 'birthday',
     SEX: 'sex',
     PLACE_RESIDENCY: 'place-residency',
-    PLACE_ORIGIN: 'place-origin'
+    PLACE_ORIGIN: 'place-origin',
+    NATURAL_PERSON: 'natural-person'
 }
 
 export default class NaturalPersonTag {
@@ -29,7 +30,8 @@ export default class NaturalPersonTag {
     }
 
     toXml(tagName) {
-        const tag = document.createElementNS(null, tagName)
+        const parentTag = document.createElementNS(null, tagName)
+        const tag = document.createElementNS(null, TAG_NAMES.NATURAL_PERSON)
 
         tag.appendChild(this.name.toXml(TAG_NAMES.NAME))
         tag.appendChild(this.firstName.toXml(TAG_NAMES.FIRST_NAME))
@@ -38,6 +40,7 @@ export default class NaturalPersonTag {
         tag.appendChild(this.placeResidency.toXml(TAG_NAMES.PLACE_RESIDENCY))
         tag.appendChild(this.placeOrigin.toXml(TAG_NAMES.PLACE_ORIGIN))
 
-        return tag
+        parentTag.appendChild(tag)
+        return parentTag
     }
 }

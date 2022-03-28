@@ -3,7 +3,7 @@ import StringTag from "@/data-classes/tags/StringTag";
 
 const TAG_NAMES = {
     NAME: 'name',
-    FIRST_NAME: 'first-name',
+    FIRST_NAME: 'firstname',
     OFFICE: 'office'
 }
 
